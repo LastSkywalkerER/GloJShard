@@ -11,7 +11,7 @@ console.log(numMult);
 console.log(Number(String(numMult ** 3).substr(0, 2)));
 
 let lang = prompt('ru или en?');
-let month = [
+const month = [
   ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
   ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 ];
@@ -34,3 +34,7 @@ switch(lang) {
 }
 
 month[(lang === 'ru') ? 0 : 1].reduce(reducer, '');
+
+let namePerson = prompt('Введите имя');
+
+namePerson === 'Артем' ? console.log('директор') : (namePerson === 'Максим' ? console.log('преподаватель') : console.log('студент'))
