@@ -1,30 +1,25 @@
 'use strict';
 
-let lang = prompt('ru или en?');
-const month = [
-  ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
-  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-];
+function getOneArgument(oneArgument){
+  if (typeof oneArgument !== 'string' ) return 'Получена не строка';
 
-const reducer = (accumulator, currentValue) => console.log(currentValue);
+  let i = 0;
 
-if (lang === 'ru') {
-  month[0].reduce(reducer, '');
-} else if (lang === 'en') {
-  month[1].reduce(reducer, '');
-}
+  while (oneArgument[i] === ' ') {
+    i++;
+  };
 
-switch(lang) {
-  case ('ru'):
-    month[0].reduce(reducer, '');
-    break;
-  case ('en'):
-    month[1].reduce(reducer, '');
-    break;
-}
+  oneArgument = oneArgument.substring(i);
 
-month[(lang === 'ru') ? 0 : 1].reduce(reducer, '');
+  i = oneArgument.length-1;
 
-let namePerson = prompt('Введите имя');
+  while (oneArgument[i] === ' ') {
+    i--;
+  };
 
-namePerson === 'Артем' ? console.log('директор') : (namePerson === 'Максим' ? console.log('преподаватель') : console.log('студент'))
+  oneArgument = oneArgument.substring(0, i + 1);
+
+  if (oneArgument.length > 30) oneArgument = oneArgument.replace(oneArgument.substring(30), '...');
+
+  return oneArgument;
+};
