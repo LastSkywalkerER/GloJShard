@@ -1,16 +1,33 @@
 'use strict';
 
-let wrapper = document.querySelector('.wrapper'),
-  colorText = document.querySelector('.color'),
-  change = document.querySelector('.change');
+const moveObj = () => {
+  const obj = document.querySelector('.wrapper');
 
-function getRandomHex() {
-  return (Math.floor(Math.random() * Math.floor(999999)) + 1000000).toString(16);
-}
+  let start = 0;
 
-change.addEventListener('click', () => {
-  let color = '#' + getRandomHex();
-  wrapper.style.backgroundColor = color;
-  colorText.textContent = color;
-  change.style.color = color;
-});
+  const moveAnimationRirght = () => {
+    start += 10;
+
+    obj.style.transform = `translateX(${start}px)`;
+    if (start < 500) {
+      window.requestAnimationFrame(moveAnimationRirght);
+    } else {
+      window.requestAnimationFrame(moveAnimationLeft);
+    }
+  };
+
+  const moveAnimationLeft = () => {
+    start -= 10;
+
+    obj.style.transform = `translateX(${start}px)`;
+    if (start > 0) {
+      window.requestAnimationFrame(moveAnimationLeft);
+    } else {
+      window.requestAnimationFrame(moveAnimationRirght);
+    }
+  };
+
+  window.requestAnimationFrame(moveAnimationRirght);
+};
+
+moveObj();
