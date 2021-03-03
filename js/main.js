@@ -52,6 +52,7 @@ class GameWithRooms {
         } else {
           this.lampsState[index].state = 'heat';
         }
+        item.classList.toggle('enebled');
       }
     });
     this.render();
@@ -90,6 +91,7 @@ class GameWithRooms {
     this.room2.style.visibility = 'visible  ';
     this.winAlert.style.display = 'none';
     this.loseAlert.style.display = 'none';
+    this.trigers.forEach(item => item.classList.remove('enebled'));
   }
 
   submit() {
