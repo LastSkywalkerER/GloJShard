@@ -38,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         outputData() {
             this.inputOutputCurrency.value = this.inputInputCurrency.value * this.exchangeValues[this.fromCurrency][this.toCurrency];
+            if (this.inputOutputCurrency.value === 'NaN') {
+                this.inputOutputCurrency.value = 'Введите число!';
+            }
         }
 
         listeners() {
@@ -50,7 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.outputData();
             });
 
-            this.inputInputCurrency.addEventListener('input', this.outputData.bind(this));
+            this.inputInputCurrency.addEventListener('input', () => {
+                this.inputInputCurrency.value = this.inputInputCurrency.value.replace(/[^\d\.]/, '');
+                this.outputData();
+            });
         }
     }
 
